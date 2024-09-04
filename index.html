@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detect User Browser and OS</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+<style media="screen">
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+body {
+background-color: #328cf3;
+}
+#container {
+position: absolute;
+background-color: #ffffff;
+transform: translate(-50%, -50%);
+top: 50%;
+left: 50%;
+width: 90vw;
+max-width: 500px;
+padding: 20px;
+border-radius: 5px;
+font-family: "Poppins", sans-serif;
+font-size: 5vmin;
+color: #051a32;
+font-weight: 600;
+line-height: 1.8em;
+text-align: center;
+box-shadow: 0 20px 50px rgba(5, 26, 50, 0.18);
+}
+#container span {
+font-weight: 700;
+color: #9d1df3;
+}
+
+</style>
+  </head>
+  <body>
+    <div id="container">
+      You are using <span id="browser-details"></span><br />
+
+    </div>
+    <!-- Script -->
+    <script>
+    //References
+let browserDetailsRef = document.getElementById("browser-details");
+ 
+var browserList = [
+{ name: "Firefox", value: "Firefox" },
+{ name: "Opera", value: "OPR" },
+{ name: "Edge", value: "Edg" },
+{ name: "Chrome", value: "Chrome" },
+{ name: "Safari", value: "Safari" },
+];
+
+
+let broswerChecker = () => {
+//Useragent contains browser details and OS  details but we need to separate them
+let userDetails = navigator.userAgent;
+for (let i in browserList) {
+  //check if the string contains any value from the array
+  if (userDetails.includes(browserList[i].value)) {
+    //extract browser name and version from the string
+    browserDetailsRef.innerHTML = browserList[i].name || "Unknown Browser";
+    break;
+  }
+}
+};
+
+window.onload = broswerChecker();
+    </script>
+  </body>
+</html>
